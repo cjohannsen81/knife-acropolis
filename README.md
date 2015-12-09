@@ -24,6 +24,12 @@ The simplest way to test the installation is to pass your host (-H), username (-
 	knife acropolis vm list (options)
 	
 
+You can also add the static options like host, username and password to your knife.rb configuration:
+
+	knife[:a_host] = "yourhost.com"
+	knife[:a_user] = "yourUsername"
+	knife[:a_pass] = "yourPassword"
+
 # Subcommands #
 
 knife acropolis ha list
@@ -69,7 +75,7 @@ This command shows all available vdisks in a path. You have to use (-N) to set t
 knife acropolis vm list
 -----------------------
 
-This command shows all available virtual machines in the cluster.
+This command shows all available virtual machines in the cluster. Adding (-S) will show them sorted by name.
 
 # Upcoming releases #
 

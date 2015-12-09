@@ -18,12 +18,6 @@ class Chef
         :long => "--acropolis-host HOST",
         :description => "Please enter the IP/hostname of the Nutanix Management API host.",
         :proc => Proc.new { |key| Chef::Config[:knife][:a_host] = key }
-        
-        option :a_pass,
-        :short => "-P PASS",
-        :long => "--acropolis-password PASS",
-        :description => "Please enter the password of the Nutanix Management API user.",
-        :proc => Proc.new { |key| Chef::Config[:knife][:a_pass] = key }
     
         option :a_user,
         :short => "-U USER",
@@ -31,6 +25,11 @@ class Chef
         :description => "Please enter the IP/hostname of the Nutanix Management API host.",
         :proc => Proc.new { |key| Chef::Config[:knife][:a_user] = key }
     
+        option :a_pass,
+        :short => "-P PASS",
+        :long => "--acropolis-password PASS",
+        :description => "Please enter the password of the Nutanix Management API user.",
+        :proc => Proc.new { |key| Chef::Config[:knife][:a_pass] = key }
     end
   end
   
