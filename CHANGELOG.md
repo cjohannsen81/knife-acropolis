@@ -1,3 +1,5 @@
+## v0.0.3
+* solved file dependencies
 
 ## v0.0.2
 * added snapshot handling
