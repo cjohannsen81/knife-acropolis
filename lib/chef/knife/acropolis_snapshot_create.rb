@@ -34,7 +34,12 @@ class Chef
       
 
       def run    
-        validate
+        validate 
+        
+        task_list = [
+          ui.color('Task ID', :bold)
+        ]
+        
         #generates UUID for snapshot
         uuid = SecureRandom.uuid
         specs = '{
@@ -47,7 +52,9 @@ class Chef
             ] 
         }'
         task = post("/snapshots", specs)
-        p task
+        uuid = JSON.parse(task)
+          task_list << uuid["taskUuid"].to_s
+          print ui.list(task_list, :uneven_columns_across, 1)
       end
     end
   end

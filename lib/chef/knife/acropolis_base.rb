@@ -59,7 +59,6 @@ class Chef
     validate
       base_url = "https://"+ Chef::Config[:knife][:a_host] +":9440/api/nutanix/v0.8"+url
       puts "Trying to connect Acropolis on "+base_url 
-      p data
       RestClient::Request.execute(
         :method => :post, 
         :url => base_url, 
