@@ -79,7 +79,7 @@ This command shows all available virtual machines in the cluster. Adding (-S) wi
 
 # Upcoming releases #
 
-The next release will provide the creation of virtual machines and netorks.
+The next release will provide the creation of virtual machines and networks.
 
 # License #
 
