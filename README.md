@@ -47,6 +47,11 @@ knife acropolis network list
 
 This command shows all available networks.
 
+knife acropolis network create
+-----------------------
+
+This command allows you to create a simple network.
+
 knife acropolis snapshot create
 -------------------------------
 
