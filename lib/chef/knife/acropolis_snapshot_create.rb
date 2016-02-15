@@ -3,7 +3,7 @@ require 'chef/knife'
 class Chef
   class Knife
     class AcropolisSnapshotCreate < Knife
-      
+
       include AcropolisBase
 
       deps do
@@ -31,15 +31,15 @@ class Chef
           exit 1
         end
       end
-      
 
-      def run    
-        validate 
-        
+
+      def run
+        validate
+
         task_list = [
           ui.color('Task ID', :bold)
         ]
-        
+
         #generates UUID for snapshot
         uuid = SecureRandom.uuid
         specs = '{
@@ -49,8 +49,9 @@ class Chef
               "snapshotName":  "'"#{Chef::Config[:knife][:snap].to_s}"'",
               "uuid": "'"#{uuid}"'"
               }
-            ] 
+            ]
         }'
+        p specs
         task = post("/snapshots", specs)
         uuid = JSON.parse(task)
           task_list << uuid["taskUuid"].to_s
