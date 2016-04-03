@@ -5,7 +5,11 @@ This is an unofficial Chef Knife plugin for the Nutanix Acroplis Hypervisor. Thi
 
 # Installation #
 
-You can add this plugin to you normal knife plugin path (like ~/.chef/plugins/knife/) or download it as a gem:
+chefDk installation
+
+        $ chef gem install knife-acropolis
+
+You can alternatively add this plugin to you normal knife plugin path (like ~/.chef/plugins/knife/) or download it as a gem:
 
 	$ gem install knife-acropolis
 	
