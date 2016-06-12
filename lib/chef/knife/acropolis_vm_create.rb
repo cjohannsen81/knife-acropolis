@@ -3,7 +3,6 @@ require 'chef/knife'
 class Chef
   class Knife
     class AcropolisVmCreate < Knife
-
       include AcropolisBase
 
       deps do
@@ -11,25 +10,25 @@ class Chef
         require 'securerandom'
       end
 
-      banner "knife acropolis vm create (options)"
+      banner 'knife acropolis vm create (options)'
 
       option :mem,
-      :short => "-M MB",
-      :long => "--mem MB",
-      :description => "Memory in MegaBytes",
-      :proc => Proc.new { |i| Chef::Config[:knife][:mem] = i }
+             short: '-M MB',
+             long: '--mem MB',
+             description: 'Memory in MegaBytes',
+             proc: proc { |i| Chef::Config[:knife][:mem] = i }
 
       option :cpu,
-      :short => "-C CORES",
-      :long => "--cpu CORES",
-      :description => "CPU cores",
-      :proc => Proc.new { |i| Chef::Config[:knife][:cpu] = i }
+             short: '-C CORES',
+             long: '--cpu CORES',
+             description: 'CPU cores',
+             proc: proc { |i| Chef::Config[:knife][:cpu] = i }
 
       option :chef_node_name,
-      :short => "-N NAME",
-      :long => "--node-name NAME",
-      :description => "The Chef node name for your new node",
-      :proc => Proc.new { |key| Chef::Config[:knife][:chef_node_name] = key }
+             short: '-N NAME',
+             long: '--node-name NAME',
+             description: 'The Chef node name for your new node',
+             proc: proc { |key| Chef::Config[:knife][:chef_node_name] = key }
 
       def validate
         unless  Chef::Config[:knife][:mem] && Chef::Config[:knife][:cpu] && Chef::Config[:knife][:chef_node_name]
@@ -38,7 +37,6 @@ class Chef
         end
       end
 
-
       def run
         validate
 
@@ -46,13 +44,13 @@ class Chef
           ui.color('Task ID', :bold)
         ]
 
-        #generates UUID for snapshot
+        # generates UUID for snapshot
         uuid = SecureRandom.uuid
         time = Time.now.to_i
         specs = '{
-          "name": "'"#{Chef::Config[:knife][:chef_node_name].to_s}"'",
-          "memoryMb": "'"#{Chef::Config[:knife][:mem].to_s}"'",
-          "numVcpus": "'"#{Chef::Config[:knife][:cpu].to_s}"'",
+          "name": "'"#{Chef::Config[:knife][:chef_node_name]}"'",
+          "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",
+          "numVcpus": "'"#{Chef::Config[:knife][:cpu]}"'",
           "hypervisorType": "Acropolis",
           "description": "Created with knife-acropolis",
           "vmDisks": [
@@ -72,10 +70,10 @@ class Chef
             }
           ]
         }'
-        task = post("/vms", specs)
+        task = post('/vms', specs)
         uuid = JSON.parse(task)
-          task_list << uuid["taskUuid"].to_s
-          print ui.list(task_list, :uneven_columns_across, 1)
+        task_list << uuid['taskUuid'].to_s
+        print ui.list(task_list, :uneven_columns_across, 1)
       end
     end
   end
