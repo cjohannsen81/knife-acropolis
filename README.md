@@ -1,13 +1,13 @@
 Knife Nutanix Acropolis
 ======
 
-This is an unofficial Chef Knife plugin for the Nutanix Acroplis Hypervisor. This plugin allows to collect the informations available in the Management API.
+This is an unofficial Chef Knife plugin for the Nutanix Acropolis Hypervisor. This plugin allows to collect the informations available in the Management API.
 
 # Installation #
 
 If you already downloaded ChefDK you can easily install the gem using:
 
-  $ chef gem install knife-acropolis
+	$ chef gem install knife-acropolis
 
 You can alternatively add this plugin to you normal knife plugin path (like ~/.chef/plugins/knife/) or download it natively as a gem:
 
