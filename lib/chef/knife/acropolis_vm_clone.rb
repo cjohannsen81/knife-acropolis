@@ -32,16 +32,16 @@ class Chef
              short: '-N NAME',
              long: '--node-name NAME',
              description: 'The Chef node name for your new node',
-             proc: proc { |key| Chef::Config[:knife][:chef_node_name] = key }
+             proc: proc { |key| Chef::Config[:knife][:node_name] = key }
 
       option :bootstrap_protocol,
              long: '--bootstrap-protocol protocol',
              description: "Protocol to bootstrap windows servers. options: 'winrm' or 'ssh' or 'cloud-api'.",
-             default: 'winrm'
+             default: 'ssh'
 
       def validate
-        unless Chef::Config[:knife][:mem] && Chef::Config[:knife][:cpu] && Chef::Config[:knife][:chef_node_name]
-          ui.error('Missing mem, cpu, name or gateway. Use -M (--mem), -C (--cpu), -N (--node-name) and -G (--gateway) to set the mandatory values.')
+        unless Chef::Config[:knife][:mem] && Chef::Config[:knife][:cpu] && Chef::Config[:knife][:source_vm] && Chef::Config[:knife][:node_name]
+          ui.error('Missing mem, cpu, name or source VM. Use -M (--mem), -C (--cpu), -N (--node-name) and --source_vm UUID to set the mandatory values.')
           exit 1
         end
       end
@@ -62,7 +62,7 @@ class Chef
         specs = '{
           "specList": [
             {
-              "name": "'"#{Chef::Config[:knife][:chef_node_name]}"'",
+              "name": "'"#{Chef::Config[:knife][:node_name]}"'",
               "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",
               "numVcpus": "'"#{Chef::Config[:knife][:cpu]}"'",
               "overrideNetworkConfig": false
