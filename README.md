@@ -1,18 +1,18 @@
-Knife Nutanix Acropolis 
+Knife Nutanix Acropolis
 ======
 
 This is an unofficial Chef Knife plugin for the Nutanix Acroplis Hypervisor. This plugin allows to collect the informations available in the Management API.
 
 # Installation #
 
-chefDk installation
+If you already downloaded ChefDK you can easily install the gem using:
 
-        $ chef gem install knife-acropolis
+  $ chef gem install knife-acropolis
 
-You can alternatively add this plugin to you normal knife plugin path (like ~/.chef/plugins/knife/) or download it as a gem:
+You can alternatively add this plugin to you normal knife plugin path (like ~/.chef/plugins/knife/) or download it natively as a gem:
 
 	$ gem install knife-acropolis
-	
+
 Depending on your system's configuration, you may need to run this command with root privileges.
 
 The simplest way to test the installation is to pass your host (-H), username (-U) and password (-P) with one of the available commands:
@@ -25,8 +25,10 @@ The simplest way to test the installation is to pass your host (-H), username (-
 	knife acropolis snapshot list (options)
 	knife acropolis task list (options)
 	knife acropolis vdisk list (options)
-	knife acropolis vm list (options)
-	
+	knife acropolis vm clone (options)
+  knife acropolis vm create (options)
+  knife acropolis vm list (options)
+
 
 You can also add the static options like host, username and password to your knife.rb configuration:
 
@@ -86,17 +88,18 @@ knife acropolis vm list
 
 This command shows all available virtual machines in the cluster. Adding (-S) will show them sorted by name.
 
-# Upcoming releases #
+knife acropolis vm create
+-----------------------
 
-The next release will provide the creation of virtual machines and networks.
+This command allows to create a virtual machine.
+
+knife acropolis vm clone
+-----------------------
+
+This command allows to clone a virtual machine.
+
 
 # License #
 
 Author: Christian Johannsen (c.johannsen@clickedways.de)
 License: Apache License, Version 2.0
-
-
-
-
-
-

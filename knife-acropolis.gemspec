@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/cjohannsen81/knife-acropolis"
   s.summary     = "Nutanix Acropolis plugin"
   s.description = "Plugin for Chef´s knife command, to support the Nutanix Acropolis App Fabric."
-  s.license     = 'APACHE'
+  s.license     = 'APAFML'
   s.files	= Dir.glob("{lib}/**/*") + %w(LICENSE README.md CHANGELOG.md)
   s.require_paths = ["lib"]
 

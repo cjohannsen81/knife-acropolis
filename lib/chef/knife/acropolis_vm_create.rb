@@ -24,15 +24,27 @@ class Chef
              description: 'CPU cores',
              proc: proc { |i| Chef::Config[:knife][:cpu] = i }
 
+      option :disk_size,
+             short: '-D MB',
+             long: '--disk-size MB',
+             description: 'Disk Size in MB',
+             proc: proc { |i| Chef::Config[:knife][:disk_size] = i }
+
+      option :networkUuid,
+             short: '-U UUID',
+             long: '--network-uuid UUID',
+             description: 'Network UUID',
+             proc: proc { |i| Chef::Config[:knife][:networkUuid] = i }
+
       option :chef_node_name,
              short: '-N NAME',
              long: '--node-name NAME',
              description: 'The Chef node name for your new node',
-             proc: proc { |key| Chef::Config[:knife][:chef_node_name] = key }
+             proc: proc { |key| Chef::Config[:knife][:node_name] = key }
 
       def validate
-        unless  Chef::Config[:knife][:mem] && Chef::Config[:knife][:cpu] && Chef::Config[:knife][:chef_node_name]
-          ui.error('Missing mem, cpu, name or gateway. Use -M (--mem), -C (--cpu), -N (--node-name) and -G (--gateway) to set the mandatory values.')
+        unless  Chef::Config[:knife][:mem] && Chef::Config[:knife][:cpu] && Chef::Config[:knife][:disk_size] && Chef::Config[:knife][:networkUuid] && Chef::Config[:knife][:node_name]
+          ui.error('Missing mem, cpu, name or gateway. Use -M (--mem), -C (--cpu), -N (--node-name), -D (--disk-size) and -U (--network-uuid) to set the mandatory values.')
           exit 1
         end
       end
@@ -48,7 +60,7 @@ class Chef
         uuid = SecureRandom.uuid
         time = Time.now.to_i
         specs = '{
-          "name": "'"#{Chef::Config[:knife][:chef_node_name]}"'",
+          "name": "'"#{Chef::Config[:knife][:node_name]}"'",
           "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",
           "numVcpus": "'"#{Chef::Config[:knife][:cpu]}"'",
           "hypervisorType": "Acropolis",
@@ -58,14 +70,15 @@ class Chef
               "isCdrom": false,
               "isEmpty": false,
               "isScsiPassThrough": false,
-              "vmDiskClone": {
-                "vmDiskUuid": "e939e3b4-644d-4748-a96d-7f9128182ce2"
+              "vmDiskCreate": {
+                "containerName": "default",
+                "sizeMb": "'"#{Chef::Config[:knife][:disk_size]}"'"
               }
             }
           ],
           "vmNics": [
             {
-              "networkUuid": "c106f251-b858-4a8a-9db0-2fcd3b4ab105",
+              "networkUuid": "'"#{Chef::Config[:knife][:networkUuid]}"'",
               "requestIp": true
             }
           ]
