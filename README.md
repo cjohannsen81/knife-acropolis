@@ -26,9 +26,8 @@ The simplest way to test the installation is to pass your host (-H), username (-
 	knife acropolis task list (options)
 	knife acropolis vdisk list (options)
 	knife acropolis vm clone (options)
-  knife acropolis vm create (options)
-  knife acropolis vm list (options)
-
+	knife acropolis vm create (options)
+	knife acropolis vm list (options)
 
 You can also add the static options like host, username and password to your knife.rb configuration:
 
