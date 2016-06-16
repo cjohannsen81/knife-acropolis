@@ -1,2 +1,7 @@
-gem 'rake', '~> 10'
-gem 'rubocop', '~> 0.32'
+# encoding: utf-8
+source 'https://rubygems.org'
+
+gemspec
+
+gem 'rake', '~> 11.0'
+gem 'rspec', '~> 3.4.0'
