@@ -52,25 +52,22 @@ class Chef
         task_list = [
           ui.color('Task ID', :bold)
         ]
-
-        vm_list = [
-          ui.color('VM ID', :bold)
-        ]
-
-        vm_list << uuid
-        time = Time.now.to_i
+        
         specs = '{
-          "specList": [
-            {
-              "name": "'"#{Chef::Config[:knife][:node_name]}"'",
-              "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",
-              "numVcpus": "'"#{Chef::Config[:knife][:cpu]}"'",
-              "overrideNetworkConfig": false
-            }
-          ]
+        "specList": [
+          {
+            "name": "'"#{Chef::Config[:knife][:node_name]}"'",
+            "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",
+            "numVcpus": "'"#{Chef::Config[:knife][:cpu]}"'",
+            "overrideNetworkConfig": false
+          }
+         ]
         }'
-        vm = post("/vms/#{Chef::Config[:knife][:source_vm]}/clone", specs)
-        print ui.list(vm_list, :uneven_columns_across, 1)
+
+        task = post("/vms/#{Chef::Config[:knife][:source_vm]}/clone", specs)
+        uuid = JSON.parse(task)
+        task_list << uuid['taskUuid'].to_s
+        print ui.list(task_list, :uneven_columns_across, 1)
       end
     end
   end
