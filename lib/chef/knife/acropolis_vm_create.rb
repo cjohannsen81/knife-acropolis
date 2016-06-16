@@ -2,7 +2,7 @@ require 'chef/knife'
 
 class Chef
   class Knife
-    #Class for Acroplis VM creation
+    # Class for Acroplis VM creation
     class AcropolisVmCreate < Knife
       include AcropolisBase
 
