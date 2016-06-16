@@ -3,7 +3,7 @@ require 'chef/knife'
 class Chef
   class Knife
     class AcropolisImage < Knife
-
+     #Acropolis Image List
       include AcropolisBase
 
       deps do
