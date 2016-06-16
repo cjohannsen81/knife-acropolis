@@ -49,16 +49,11 @@ class Chef
       def run
         validate
 
-        task_list = [
-          ui.color('Task ID', :bold)
-        ]
-
         vm_list = [
           ui.color('VM ID', :bold)
         ]
 
         vm_list << uuid
-        time = Time.now.to_i
         specs = '{
           "specList": [
             {
@@ -69,7 +64,7 @@ class Chef
             }
           ]
         }'
-        vm = post("/vms/#{Chef::Config[:knife][:source_vm]}/clone", specs)
+        post("/vms/#{Chef::Config[:knife][:source_vm]}/clone", specs)
         print ui.list(vm_list, :uneven_columns_across, 1)
       end
     end
