@@ -84,9 +84,7 @@ class Chef
           :password => Chef::Config[:knife][:a_pass],
           :verify_ssl => false
           )
-      end
+    end
+    end
   end
-
-
- end
 end
