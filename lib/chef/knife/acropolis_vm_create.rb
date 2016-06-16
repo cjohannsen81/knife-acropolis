@@ -56,9 +56,6 @@ class Chef
           ui.color('Task ID', :bold)
         ]
 
-        # generates UUID for snapshot
-        uuid = SecureRandom.uuid
-        time = Time.now.to_i
         specs = '{
           "name": "'"#{Chef::Config[:knife][:node_name]}"'",
           "memoryMb": "'"#{Chef::Config[:knife][:mem]}"'",

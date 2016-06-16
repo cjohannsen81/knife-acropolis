@@ -45,8 +45,8 @@ class Chef
         specs = '{
           "snapshotSpecs": [
               {
-              "vmUuid": "'"#{Chef::Config[:knife][:uuid].to_s}"'",
-              "snapshotName":  "'"#{Chef::Config[:knife][:snap].to_s}"'",
+              "vmUuid": "'"#{Chef::Config[:knife][:uuid]}"'",
+              "snapshotName":  "'"#{Chef::Config[:knife][:snap]}"'",
               "uuid": "'"#{uuid}"'"
               }
             ]

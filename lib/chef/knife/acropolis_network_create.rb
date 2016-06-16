@@ -74,16 +74,16 @@ class Chef
         uuid = SecureRandom.uuid
         time = Time.now.to_i
         specs = '{
-              "vlanId": "'"#{Chef::Config[:knife][:vlanId].to_s}"'",
+              "vlanId": "'"#{Chef::Config[:knife][:vlanId]}"'",
               "ipConfig": {
-                "prefixLength": "'"#{Chef::Config[:knife][:prefix].to_s}"'",
-                "networkAddress": "'"#{Chef::Config[:knife][:network].to_s}"'",
+                "prefixLength": "'"#{Chef::Config[:knife][:prefix]}"'",
+                "networkAddress": "'"#{Chef::Config[:knife][:network]}"'",
                 "dhcpOptions": {
                 },
-                "defaultGateway": "'"#{Chef::Config[:knife][:gateway].to_s}"'"
+                "defaultGateway": "'"#{Chef::Config[:knife][:gateway]}"'"
               },
-              "annotation": "'"#{Chef::Config[:knife][:annotation].to_s}"'",
-              "vswitchName": "'"#{Chef::Config[:knife][:vswitch].to_s}"'",
+              "annotation": "'"#{Chef::Config[:knife][:annotation]}"'",
+              "vswitchName": "'"#{Chef::Config[:knife][:vswitch]}"'",
               "logicalTimestamp": "'"#{time}"'",
               "name": "'"#{Chef::Config[:knife][:netname].to_s}"'",
               "uuid": "'"#{uuid}"'"
